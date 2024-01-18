@@ -1,7 +1,18 @@
+import { format } from "date-fns";
 import { useState } from "react"
+
+const asdf = () => {
+  try {
+    console.log(format(new Date(), 'p'))
+  } catch (error) {
+    console.error(error)
+  }
+  return 1;
+}
 
 function IndexPopup() {
   const [data, setData] = useState("")
+  asdf()
 
   return (
     <div
