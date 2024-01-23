@@ -1,0 +1,275 @@
+From: seaders
+Date: Tue, 23 Jan 2024 15:12:03 +0000
+Subject: [PATCH] Remove _loadJS functionality
+
+---
+diff --git a/node_modules/@firebase/auth/dist/browser-cjs/index-21814063.js b/node_modules/@firebase/auth/dist/browser-cjs/index-21814063.js
+index 40fdf83..11293cd 100644
+--- a/node_modules/@firebase/auth/dist/browser-cjs/index-21814063.js
++++ b/node_modules/@firebase/auth/dist/browser-cjs/index-21814063.js
+@@ -3076,21 +3076,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise((resolve, reject) => {
+-        const el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = e => {
+-            const error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ function _generateCallbackName(prefix) {
+     return `__${prefix}${Math.floor(Math.random() * 1000000)}`;
+diff --git a/node_modules/@firebase/auth/dist/cordova/popup_redirect-106f885f.js b/node_modules/@firebase/auth/dist/cordova/popup_redirect-106f885f.js
+index 160c94b..d7d04a0 100644
+--- a/node_modules/@firebase/auth/dist/cordova/popup_redirect-106f885f.js
++++ b/node_modules/@firebase/auth/dist/cordova/popup_redirect-106f885f.js
+@@ -4518,21 +4518,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise(function (resolve, reject) {
+-        var el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = function (e) {
+-            var error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ function _generateCallbackName(prefix) {
+     return "__".concat(prefix).concat(Math.floor(Math.random() * 1000000));
+diff --git a/node_modules/@firebase/auth/dist/esm2017/index-dd468b12.js b/node_modules/@firebase/auth/dist/esm2017/index-dd468b12.js
+index 5ef851c..2e5a0e8 100644
+--- a/node_modules/@firebase/auth/dist/esm2017/index-dd468b12.js
++++ b/node_modules/@firebase/auth/dist/esm2017/index-dd468b12.js
+@@ -3074,21 +3074,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise((resolve, reject) => {
+-        const el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = e => {
+-            const error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ function _generateCallbackName(prefix) {
+     return `__${prefix}${Math.floor(Math.random() * 1000000)}`;
+diff --git a/node_modules/@firebase/auth/dist/esm5/index-dd399a6e.js b/node_modules/@firebase/auth/dist/esm5/index-dd399a6e.js
+index d443ac0..5fd6ec0 100644
+--- a/node_modules/@firebase/auth/dist/esm5/index-dd399a6e.js
++++ b/node_modules/@firebase/auth/dist/esm5/index-dd399a6e.js
+@@ -3701,21 +3701,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise(function (resolve, reject) {
+-        var el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = function (e) {
+-            var error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ function _generateCallbackName(prefix) {
+     return "__".concat(prefix).concat(Math.floor(Math.random() * 1000000));
+diff --git a/node_modules/@firebase/auth/dist/index.webworker.esm5.js b/node_modules/@firebase/auth/dist/index.webworker.esm5.js
+index 52438dc..15d261d 100644
+--- a/node_modules/@firebase/auth/dist/index.webworker.esm5.js
++++ b/node_modules/@firebase/auth/dist/index.webworker.esm5.js
+@@ -4779,21 +4779,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise(function (resolve, reject) {
+-        var el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = function (e) {
+-            var error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ 
+ /* eslint-disable @typescript-eslint/no-require-imports */
+diff --git a/node_modules/@firebase/auth/dist/node-esm/totp-4c2d4e67.js b/node_modules/@firebase/auth/dist/node-esm/totp-4c2d4e67.js
+index 6148005..338b373 100644
+--- a/node_modules/@firebase/auth/dist/node-esm/totp-4c2d4e67.js
++++ b/node_modules/@firebase/auth/dist/node-esm/totp-4c2d4e67.js
+@@ -3054,21 +3054,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise((resolve, reject) => {
+-        const el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = e => {
+-            const error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ 
+ /* eslint-disable @typescript-eslint/no-require-imports */
+diff --git a/node_modules/@firebase/auth/dist/node/totp-fe65684a.js b/node_modules/@firebase/auth/dist/node/totp-fe65684a.js
+index 1819c3d..1a66f0c 100644
+--- a/node_modules/@firebase/auth/dist/node/totp-fe65684a.js
++++ b/node_modules/@firebase/auth/dist/node/totp-fe65684a.js
+@@ -3675,21 +3675,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise(function (resolve, reject) {
+-        var el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = function (e) {
+-            var error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ 
+ /* eslint-disable @typescript-eslint/no-require-imports */
+diff --git a/node_modules/@firebase/auth/dist/rn/index-96ab5fb1.js b/node_modules/@firebase/auth/dist/rn/index-96ab5fb1.js
+index 83b56ab..f5aa202 100644
+--- a/node_modules/@firebase/auth/dist/rn/index-96ab5fb1.js
++++ b/node_modules/@firebase/auth/dist/rn/index-96ab5fb1.js
+@@ -3604,21 +3604,8 @@ function getScriptParentElement() {
+     var _a, _b;
+     return (_b = (_a = document.getElementsByTagName('head')) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : document;
+ }
+-function _loadJS(url) {
+-    // TODO: consider adding timeout support & cancellation
+-    return new Promise(function (resolve, reject) {
+-        var el = document.createElement('script');
+-        el.setAttribute('src', url);
+-        el.onload = resolve;
+-        el.onerror = function (e) {
+-            var error = _createError("internal-error" /* AuthErrorCode.INTERNAL_ERROR */);
+-            error.customData = e;
+-            reject(error);
+-        };
+-        el.type = 'text/javascript';
+-        el.charset = 'UTF-8';
+-        getScriptParentElement().appendChild(el);
+-    });
++function _loadJS(e) {
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ function _generateCallbackName(prefix) {
+     return "__".concat(prefix).concat(Math.floor(Math.random() * 1000000));
+diff --git a/node_modules/firebase/firebase-auth-cordova.js b/node_modules/firebase/firebase-auth-cordova.js
+index 029f534..d373a88 100644
+--- a/node_modules/firebase/firebase-auth-cordova.js
++++ b/node_modules/firebase/firebase-auth-cordova.js
+@@ -2635,17 +2635,7 @@ var V = function() {
+ }();
+ 
+ function _loadJS(e) {
+-    return new Promise((function(t, r) {
+-        var n = document.createElement("script");
+-        n.setAttribute("src", e), n.onload = t, n.onerror = function(e) {
+-                var t = _createError("internal-error");
+-                t.customData = e, r(t)
+-            }, n.type = "text/javascript", n.charset = "UTF-8",
+-            function getScriptParentElement() {
+-                var e, t;
+-                return null !== (t = null === (e = document.getElementsByTagName("head")) || void 0 === e ? void 0 : e[0]) && void 0 !== t ? t : document
+-            }().appendChild(n)
+-    }))
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ var W = function() {
+     function RecaptchaEnterpriseVerifier(e) {
+diff --git a/node_modules/firebase/firebase-auth.js b/node_modules/firebase/firebase-auth.js
+index be14be3..07ac15c 100644
+--- a/node_modules/firebase/firebase-auth.js
++++ b/node_modules/firebase/firebase-auth.js
+@@ -1792,17 +1792,7 @@ class Subscription {
+ }
+ 
+ function _loadJS(e) {
+-    return new Promise(((t, r) => {
+-        const n = document.createElement("script");
+-        n.setAttribute("src", e), n.onload = t, n.onerror = e => {
+-                const t = _createError("internal-error");
+-                t.customData = e, r(t)
+-            }, n.type = "text/javascript", n.charset = "UTF-8",
+-            function getScriptParentElement() {
+-                var e, t;
+-                return null !== (t = null === (e = document.getElementsByTagName("head")) || void 0 === e ? void 0 : e[0]) && void 0 !== t ? t : document
+-            }().appendChild(n)
+-    }))
++    return Promise.reject("No dynamic loading of JS allowed")
+ }
+ 
+ function _generateCallbackName(e) {
